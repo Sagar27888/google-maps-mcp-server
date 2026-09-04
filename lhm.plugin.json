@@ -1,5 +1,5 @@
 {
-  "author": "Sagar27888",
+  "author": "Techforce Global",
   "authorUrl": "https://github.com/Sagar27888",
   "cloudEndpoint": "https://google-maps-mcp-server.vercel.app/mcp",
   "description": "Standalone MCP server exposing Techforce Global's Google Maps Scraper Apify Actor as an MCP tool.",
