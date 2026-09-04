@@ -1,0 +1,8 @@
+{
+    "actorSpecification": 1,
+    "name": "google-maps-mcp-server",
+    "title": "Google Maps MCP Server",
+    "description": "Standalone MCP server exposing Google Maps business search as a single MCP tool, backed by the Techforce Global Google Maps Scraper Actor.",
+    "version": "0.1",
+    "dockerfile": "../Dockerfile"
+}
