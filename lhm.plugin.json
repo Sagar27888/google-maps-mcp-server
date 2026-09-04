@@ -1,0 +1,49 @@
+{
+  "author": "Sagar27888",
+  "authorUrl": "https://github.com/Sagar27888",
+  "cloudEndpoint": "https://google-maps-mcp-server.vercel.app/mcp",
+  "description": "Standalone MCP server exposing Techforce Global's Google Maps Scraper Apify Actor as an MCP tool.",
+  "homepage": "https://github.com/Sagar27888/google-maps-mcp-server",
+  "identifier": "sagar27888-google-maps-mcp-server",
+  "name": "google-maps-mcp-server",
+  "prompts": [],
+  "resources": [],
+  "tools": [
+    {
+      "name": "search_google_maps",
+      "description": "Search Google Maps for businesses/places by keyword and location. Returns name, address, phone, rating, opening hours, and GPS coordinates for each result.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "searchQueries": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "description": "One or more search terms, e.g. \"restaurants in Delhi\" or \"dentists in Austin TX\"."
+          },
+          "maxResults": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 500,
+            "description": "Maximum places to return per query (default 20, max 500)."
+          },
+          "language": {
+            "type": "string",
+            "description": "Language code for results, e.g. \"en\", \"es\", \"fr\"."
+          }
+        },
+        "required": [
+          "searchQueries"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    }
+  ],
+  "version": "0.1.0"
+}
