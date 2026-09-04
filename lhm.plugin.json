@@ -4,7 +4,7 @@
   "cloudEndpoint": "https://google-maps-mcp-server.vercel.app/mcp",
   "description": "Standalone MCP server exposing Techforce Global's Google Maps Scraper Apify Actor as an MCP tool.",
   "homepage": "https://github.com/Sagar27888/google-maps-mcp-server",
-  "identifier": "sagar27888-google-maps-mcp-server",
+  "identifier": "techforce-google-maps-server",
   "name": "google-maps-mcp-server",
   "prompts": [],
   "resources": [],
