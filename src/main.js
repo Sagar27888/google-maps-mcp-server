@@ -8,18 +8,6 @@ app.use(express.json());
 app.post('/mcp', async (req, res) => {
     const token = extractBearerToken(req);
 
-    if (!token) {
-        res.status(401).json({
-            jsonrpc: '2.0',
-            error: {
-                code: -32001,
-                message: 'Missing Apify API token. Pass your own token as: Authorization: Bearer <APIFY_TOKEN>',
-            },
-            id: null,
-        });
-        return;
-    }
-
     try {
         const server = buildServer(token);
         const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });

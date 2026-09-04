@@ -31,6 +31,18 @@ export function buildServer(apifyToken) {
                 .describe('Language code for results, e.g. "en", "es", "fr".'),
         },
         async ({ searchQueries, maxResults, language }) => {
+            if (!apifyToken) {
+                return {
+                    isError: true,
+                    content: [
+                        {
+                            type: 'text',
+                            text: 'Missing Apify API token. Pass your own token as: Authorization: Bearer <APIFY_TOKEN>',
+                        },
+                    ],
+                };
+            }
+
             const client = new ApifyClient({ token: apifyToken });
 
             const input = {
