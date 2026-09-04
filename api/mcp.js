@@ -1,11 +1,20 @@
-import express from 'express';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
-import { buildServer, extractBearerToken } from './mcp-core.js';
+import { buildServer, extractBearerToken } from '../src/mcp-core.js';
 
-const app = express();
-app.use(express.json());
+export const config = {
+    runtime: 'nodejs',
+};
 
-app.post('/mcp', async (req, res) => {
+export default async function handler(req, res) {
+    if (req.method !== 'POST') {
+        res.status(405).json({
+            jsonrpc: '2.0',
+            error: { code: -32000, message: 'Method not allowed. This endpoint only accepts POST.' },
+            id: null,
+        });
+        return;
+    }
+
     const token = extractBearerToken(req);
 
     if (!token) {
@@ -41,22 +50,4 @@ app.post('/mcp', async (req, res) => {
             });
         }
     }
-});
-
-app.get('/mcp', (_req, res) => {
-    res.status(405).json({
-        jsonrpc: '2.0',
-        error: { code: -32000, message: 'Method not allowed. This endpoint only accepts POST.' },
-        id: null,
-    });
-});
-
-app.get('/', (_req, res) => {
-    res.status(200).send('Google Maps MCP Server is running. POST to /mcp with an Authorization: Bearer <APIFY_TOKEN> header.');
-});
-
-const port = process.env.ACTOR_STANDBY_PORT || process.env.PORT || 4000;
-
-app.listen(port, () => {
-    console.log(`Google Maps MCP Server listening on port ${port}. Endpoint: /mcp`);
-});
+}

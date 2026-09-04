@@ -33,10 +33,10 @@ Get your token at [Apify Console → Settings → Integrations](https://console.
 
 ### Hosted (recommended)
 
-Connect directly to the hosted Standby endpoint — no install required:
+Connect directly to the hosted endpoint — no install required:
 
 ```
-https://google-maps-mcp-server.techforce-global.apify.actor/mcp
+https://<your-vercel-project>.vercel.app/mcp
 ```
 
 Example client config (Claude Desktop / any MCP client supporting Streamable HTTP):
@@ -45,7 +45,7 @@ Example client config (Claude Desktop / any MCP client supporting Streamable HTT
 {
   "mcpServers": {
     "google-maps": {
-      "url": "https://google-maps-mcp-server.techforce-global.apify.actor/mcp",
+      "url": "https://<your-vercel-project>.vercel.app/mcp",
       "headers": {
         "Authorization": "Bearer <YOUR_APIFY_TOKEN>"
       }
@@ -63,9 +63,20 @@ npm start
 
 Server listens on `http://localhost:4000/mcp`.
 
-## Deploying on Apify
+## Deploying on Vercel (free)
 
-This project is an Apify Actor configured for [Standby mode](https://docs.apify.com/platform/actors/running/standby),
+This project includes a serverless entry point (`api/mcp.js`) and a `vercel.json` rewrite so the
+public endpoint is available at a clean `/mcp` path.
+
+1. Go to [vercel.com](https://vercel.com), sign in, click **Add New → Project**.
+2. Import this GitHub repo (`Sagar27888/google-maps-mcp-server`).
+3. Framework preset: **Other**. No build command needed — Vercel auto-detects the `api/` folder.
+4. Click **Deploy**.
+5. The public endpoint becomes available at `https://<your-vercel-project>.vercel.app/mcp`.
+
+## Deploying on Apify (alternative)
+
+This project is also an Apify Actor configured for [Standby mode](https://docs.apify.com/platform/actors/running/standby),
 which turns it into a long-running HTTP service instead of a one-shot batch job.
 
 1. Push this project to an Actor on your Apify account (Apify Console → Actors → Create new → connect this
